@@ -1,5 +1,7 @@
 package lv.venta.model;
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +17,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import lv.venta.model.enums.Degree;
 
 @Getter
 @Setter
@@ -24,9 +25,10 @@ import lv.venta.model.enums.Degree;
 @Table(name = "GradeTable")//MYSQL - grade_table
 @Entity
 public class Grade {
-
+	
+	
 	@Setter(value = AccessLevel.NONE)
-	@Column(name = "GId")//MYSQL - p_id
+	@Column(name = "GId")//MYSQL - g_id
 	@Id //ka primārā atslēga (PK)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long gId;
@@ -36,13 +38,21 @@ public class Grade {
 	@Column(name = "Grvalue")
 	private int grvalue;
 	
-	
 	@ManyToOne
+	@JoinColumn(name = "StId")//otras klases PK kolonas nosaukums
 	private Student student;
 	
 	@ManyToOne
-	@JoinColumn(name = "Cid")
+	@JoinColumn(name = "CId")
 	private Course course;
+	
+	
+	public Grade(int grvalue, Student student, Course course)
+	{
+		setGrvalue(grvalue);
+		setStudent(student);
+		setCourse(course);
+	}
 	
 	
 }
