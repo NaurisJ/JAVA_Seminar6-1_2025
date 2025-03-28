@@ -20,7 +20,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import lv.venta.model.enums.Degree;
 
 @Getter
 @Setter
@@ -34,10 +33,10 @@ public class Course {
 	@Column(name = "CId")//MYSQL - c_id
 	@Id //ka primārā atslēga (PK)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long cId;
+	private long cid;
 	
 	@NotNull
-	@Pattern(regexp = "[A-ZĒŪĪĻĶĢŠĀŽČŅa-zēūīļķģšāžčņ ]{4,40}")
+	@Pattern(regexp = "[A-ZĒŪĪĻĶĢŠĀŽČŅa-zēūīļķģšāžčņ ]{4,50}")
 	@Column(name = "Title")
 	private String title;
 	
@@ -53,8 +52,6 @@ public class Course {
 	@OneToMany(mappedBy = "course")
 	@ToString.Exclude
 	private Collection<Grade> grades;
-	
-	
 	
 	
 	public Course(String title, int cp, Professor professor) {

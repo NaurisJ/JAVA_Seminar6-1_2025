@@ -28,7 +28,7 @@ public class Student {
 	@Column(name = "StId")//MYSQL - st_id
 	@Id //ka primārā atslēga (PK)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long stId;
+	private long stid;
 	
 	@NotNull
 	@Pattern(regexp = "[A-ZĒŪĪĻĶĢŠĀŽČŅ]{1}[a-zēūīļķģšāžčņ]{3,10}([ ][A-ZĒŪĪĻĶĢŠĀŽČŅ]{1}[a-zēūīļķģšāžčņ]{3,10})?")
@@ -40,9 +40,11 @@ public class Student {
 	@Column(name = "Surname")//MYSQL - surname
 	private String surname;
 	
-	@OneToMany(mappedBy = "student")
+	@OneToMany(mappedBy = "student")//nosaukums mainīgajam no otras klases, uz kuru ir @JoinColumn anotācija
 	@ToString.Exclude
 	private Collection<Grade> grades;
+	
+	
 	
 	
 	public Student(String name, String surname) {
