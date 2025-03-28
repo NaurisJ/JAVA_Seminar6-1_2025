@@ -1,0 +1,30 @@
+<html xmlns:th="https://www.thymeleaf.org">
+	<body>
+		<p> Atzīmes: </p>
+		
+		<table border="1px">
+			<tr th:each="tempC : ${package}">
+				<td th:text="${tempC.getTitle()}"   ></td>
+				<td th:text="${tempC.getCp()}"   ></td>
+				<td> 
+					<ul>
+						<li  th:each="tempP: ${tempC.getProfessors()}"  >
+						
+						<span   th:text = "${tempP.getName()}"></span>
+						<span   th:text = "${tempP.getSurname()}"></span>
+							
+						</li>			
+					</ul>
+					
+					
+				</td>
+				
+				
+			</tr>
+			
+			
+			
+		</table>
+		
+	</body>
+</html>
